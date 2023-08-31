@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva</title>
+    <style>
+  
+         
+        
+        body {
+            margin: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh
+      
+        }
+        .main{display: flex; align-items: center; margin: 0px;}
+        .main div label{
+            margin-bottom: 5px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+        }
+        form{display: flex; flex-direction: column;}
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label for="">Nome da Empresa</label>
+                {{ form.nome_empresa }}
+            </div>
+            <div>
+                <label for="">CNPJ</label>
+                {{ form.cnpj }}
+            </div>
+            <div>
+                <label for="">Categoria da Empresa</label>
+                {{ form.categoria_empresa }}
+            </div>
+            <div>
+                <label for="">Quitado?</label>
+                {{ form.quitado }}
+            </div>
+            <div>
+                <label for="">Stand</label>
+                {{ form.reserva }}
+            </div>
+            <button type="submit" style="margin: 10px; background-color: aqua;">Enviar</button>
+        </form>
+    </div>
+</body>
+
+</html>

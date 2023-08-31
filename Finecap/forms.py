@@ -1,4 +1,4 @@
-from .models import *
+from .models import Reserva
 
 from django import forms
 from django.forms import ModelForm

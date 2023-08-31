@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista</title>
+    <style>
+        li{
+           list-style: none; 
+        }
+        a{text-decoration: none; color: white; padding: 10px; margin: 5px; border-radius: 10px;}
+    </style>
+</head>
+<body>
+    <div class="main">
+        {% for i in reserva %}
+        <div class="form">
+            <ul>
+                <li class="open">
+                    <div>Nome da Empresa:</div><div>{{ i.nome_empresa }}</div>
+                
+                </li>
+                <li class="closed">
+                    <div>CNPJ:</div><div>{{ i.cnpj }}</div></li>
+                <li class="closed">
+                    <div>Categoria:</div><div>{{ i.categoria_empresa }}</div></li>
+                <li class="open">
+                    <div>Quitado?</div><div>{{ i.quitado }}</div>
+                </li>
+                   
+                <li class="closed">
+                    <div>Id da Reserva: </div><div>{{ i.id }}</div></li>
+            </ul>
+            <a href=" {% url 'deletar_reserva' i.id %}" style="background-color: red;">Deletar</a>
+            <a href="{% url 'detalhes' i.id %}" style="background-color: blue;">Visualizar</a>
+        </div>
+        <hr>
+        {% endfor%}
+    </div>
+</body>
+</html>

@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Finecap.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index, name="index"),
+    path('lista/',lista, name='lista'),
+    path('deletar_reserva/<int:id>', deletar_reserva, name='deletar_reserva'),
+    path('detalhe_reserva/<int:id>', detail, name="detalhes")
 ]
