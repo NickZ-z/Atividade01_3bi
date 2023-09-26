@@ -13,6 +13,17 @@
 </head>
 <body>
     <div class="main">
+        <form method="get">
+            {{ filter.form.as_p }}
+            <button type="submit">Filtrar</button>
+        </form>
+        <ul>
+            {% for reserva in filter.qs %}
+                <li>{{ reserva.nome_empresa }} - {{ reserva.data_reserva }} - {{ reserva.quitado }} - {{reserva.cnpj}} - {{reserva.categoria_empresa}} - {{reserva.id}} - {{reserva.reserva}} - {{reserva.reserva.valor}}</li>
+            {% empty %}
+                <li>Nenhuma reserva encontrada.</li>
+            {% endfor %}
+        </ul>
         {% for i in reserva %}
         <div class="form">
             <ul>
@@ -30,9 +41,13 @@
                    
                 <li class="closed">
                     <div>Id da Reserva: </div><div>{{ i.id }}</div></li>
+
+                    <li class="closed">
+                        <div>data da Reserva: </div><div>{{ i.data_reserva }}</div></li>
             </ul>
             <a href=" {% url 'deletar_reserva' i.id %}" style="background-color: red;">Deletar</a>
             <a href="{% url 'detalhes' i.id %}" style="background-color: blue;">Visualizar</a>
+          
         </div>
         <hr>
         {% endfor%}

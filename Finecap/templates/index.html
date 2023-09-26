@@ -17,7 +17,7 @@
             height: 100vh
       
         }
-        .main{display: flex; align-items: center; margin: 0px;}
+        .main{display: flex; flex-direction: column; justify-content: center; margin: 0px;}
         .main div label{
             margin-bottom: 5px;
             margin-top: 5px;
@@ -52,8 +52,11 @@
                 <label for="">Stand</label>
                 {{ form.reserva }}
             </div>
+            
             <button type="submit" style="margin: 10px; background-color: aqua;">Enviar</button>
+         
         </form>
+        <a href="{% url 'lista' %}"> <button>Ir para a Lista</button></a>
     </div>
 </body>
 

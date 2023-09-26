@@ -14,6 +14,7 @@ class ReservaForm(ModelForm):
             'categoria_empresa' : forms.TextInput(attrs={'class': 'form-control' }),
             'quitado': forms.CheckboxInput(attrs={'class': 'form-control' }),
             'reserva': forms.Select(attrs={'class': 'form-control' }),
+
             
         }
 

@@ -23,5 +23,5 @@ urlpatterns = [
     path('', index, name="index"),
     path('lista/',lista, name='lista'),
     path('deletar_reserva/<int:id>', deletar_reserva, name='deletar_reserva'),
-    path('detalhe_reserva/<int:id>', detail, name="detalhes")
+    path('detalhe_reserva/<int:id>', detail, name="detalhes"),
 ]
