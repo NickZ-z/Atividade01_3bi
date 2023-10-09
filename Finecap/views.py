@@ -23,7 +23,7 @@ def index(request):
     
     return render(request,"add.html", {'form' : form})
 
-@login_required(login_url='login/')
+@login_required(login_url='login')
 def lista(request):
     reservas = Reserva.objects.all().order_by('data_reserva')
     f = ReservaFilter(request.GET, queryset=Reserva.objects.all())

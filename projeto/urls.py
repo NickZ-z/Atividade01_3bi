@@ -24,7 +24,7 @@ urlpatterns = [
     path('lista/',lista, name='lista'),
     path('deletar_reserva/<int:id>', deletar_reserva, name='deletar_reserva'),
     path('detalhe_reserva/<int:id>', detail, name="detalhes"),
-    path('login/',login,name='login'),
+    path('login/',login_view,name='login'),
     path('logout/',logout_view,name='logout'),
     path('create_user/', create_user, name='create_user')
 
