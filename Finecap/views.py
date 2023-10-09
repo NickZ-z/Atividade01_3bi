@@ -4,6 +4,10 @@ from .forms import *
 import datetime
 from .filters import ReservaFilter
 from django_filters.views import FilterView
+from django.contrib.auth import authenticate, login, logout
+from .forms import LoginForm, UserForm
+from django.contrib.auth.decorators import login_required
+
 
 def index(request): 
     data_atual = datetime.datetime.now()
@@ -17,8 +21,9 @@ def index(request):
     else:
         form = ReservaForm()
     
-    return render(request,"index.html", {'form' : form})
+    return render(request,"add.html", {'form' : form})
 
+@login_required(login_url='login/')
 def lista(request):
     reservas = Reserva.objects.all().order_by('data_reserva')
     f = ReservaFilter(request.GET, queryset=Reserva.objects.all())
@@ -36,3 +41,40 @@ def deletar_reserva(request, id):
     return redirect('lista')
 
 
+def create_user(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.is_active = True
+            user.is_staff = True
+            user.save()
+            return redirect('login')
+
+    else:
+        form = UserForm()
+
+    context = {'form': form}
+    return render(request, 'create_user.html', context)
+
+def login_view(request):
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            user = authenticate(username=login_form.cleaned_data['username'],
+                                password=login_form.cleaned_data['password'])
+            print(user)
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+
+
+    else:
+        login_form = LoginForm()
+
+    context = {'login_form': login_form}
+    return render(request, 'login.html', context)
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

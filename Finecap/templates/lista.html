@@ -17,13 +17,16 @@
             {{ filter.form.as_p }}
             <button type="submit">Filtrar</button>
         </form>
+        <hr>
         <ul>
+            <p><Strong>Filtragem</Strong></p>
             {% for reserva in filter.qs %}
                 <li>{{ reserva.nome_empresa }} - {{ reserva.data_reserva }} - {{ reserva.quitado }} - {{reserva.cnpj}} - {{reserva.categoria_empresa}} - {{reserva.id}} - {{reserva.reserva}} - {{reserva.reserva.valor}}</li>
             {% empty %}
                 <li>Nenhuma reserva encontrada.</li>
             {% endfor %}
         </ul>
+        <hr>
         {% for i in reserva %}
         <div class="form">
             <ul>
