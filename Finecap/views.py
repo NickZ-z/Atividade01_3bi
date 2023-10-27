@@ -7,7 +7,7 @@ from django_filters.views import FilterView
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, UserForm
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator
 
 def index(request): 
     data_atual = datetime.datetime.now()
@@ -23,12 +23,15 @@ def index(request):
     
     return render(request,"add.html", {'form' : form})
 
-@login_required(login_url='login')
+
 def lista(request):
     reservas = Reserva.objects.all().order_by('data_reserva')
     f = ReservaFilter(request.GET, queryset=Reserva.objects.all())
-    return render(request,"lista.html", {'reserva' : reservas, 'filter':f})
-
+   
+    pagina = request.GET.get('page')
+    paginator = Paginator(f.qs, 5)
+    pag_obj = paginator.page(paginator.num_pages)
+    return render(request,"lista.html", {'reserva' : pag_obj, 'filter':f})
 def detail(request,id):
     detail = get_object_or_404(Reserva,id=id)
     detalhes = Reserva.objects.all()
